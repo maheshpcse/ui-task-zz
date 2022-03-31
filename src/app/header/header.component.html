@@ -1,0 +1,92 @@
+<header class="section-header">
+    <section class="header-main border-bottom">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-sm-4 col-md-4 col-5">
+                    <a [routerLink]="['/home']" class="brand-wrap" data-abc="true">
+                        <img class="logo" src="../../assets/images/angular-logo.webp">
+                    </a>
+                </div>
+                <div class="col-lg-4 col-xl-5 col-sm-8 col-md-4 d-none d-md-block">
+                    <form action="#" class="search-wrap">
+                        <div class="input-group w-100">
+                            <input type="text" autocomplete="off" name="filterdata" class="form-control search-form" list="products"
+                                placeholder="Search" [(ngModel)]="filterQuery" (keyup.enter)="searchData()" (input)="resetData()"
+                                (click)="showPopup(1, $event)">
+                            <div class="search-box" *ngIf="filterQuery && showDiv" (click)="$event.stopPropagation()">
+                                <div *ngIf="productsList.length > 0 && !searchSpinner">
+                                    <div class="search-data" *ngFor="let item of productsList; let i=index;"
+                                        [routerLink]="['/product-detail', item.id]">
+                                        <span>{{ item.title }}</span>
+                                    </div>
+                                </div>
+                                <div *ngIf="productsList.length == 0 && !searchSpinner">
+                                    <div class="no-search-data">
+                                        <span>No Search Data Found.</span>
+                                    </div>
+                                </div>
+                                <div *ngIf="searchSpinner">
+                                    <div class="no-data-content">
+                                        <span><i class="fas fa-spinner fa-spin"></i></span>
+                                        <span class="ml-2">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary search-button" type="submit" (click)="searchData()">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-5 col-xl-4 col-sm-8 col-md-4 col-7">
+                    <div class="d-flex align-items-center justify-content-end notification-badges">
+                        <a target="_blank" [routerLink]="['/cart']" data-abc="true" class="nav-link widget-header"
+                            [attr.data-badge]="cartList.length">
+                            <i class="fas fa-cart-plus"></i>
+                        </a>
+                        <span class="vl"></span>
+                        <div class="dropdown">
+                            <button class="btn btn-action-user" type="button" id="showUserMenu" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <span><i class="fas fa-user-circle"></i></span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="showUserMenu">
+                                <a class="dropdown-item" [routerLink]="['/my-profile']">My Profile</a>
+                                <a class="dropdown-item" [routerLink]="['/cart']">My Products</a>
+                                <a class="dropdown-item">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <nav class="navbar navbar-expand-md navbar-main border-bottom">
+    <div class="container-fluid">
+      <form class="d-md-none my-2">
+        <div class="input-group"> <input type="search" name="search" class="form-control" placeholder="Search"
+            required="">
+          <div class="input-group-append"> <button type="submit" class="btn btn-secondary"> <i class="fa fa-search"></i>
+            </button> </div>
+        </div>
+      </form> <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#dropdown6"
+        aria-expanded="false"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="navbar-collapse collapse" id="dropdown6" style="">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown"
+              data-abc="true" aria-expanded="false">Laptops</a>
+            <div class="dropdown-menu"> <a class="dropdown-item" href="" data-abc="true">Lenovo</a> <a
+                class="dropdown-item" href="" data-abc="true">Dell</a> <a class="dropdown-item" href=""
+                data-abc="true">HP</a> <a class="dropdown-item" href="" data-abc="true">Apple</a> </div>
+          </li>
+          <li class="nav-item"> <a class="nav-link" href="" data-abc="true">Refurbished Mobile</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="" data-abc="true">Accessories & Peripheral</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="" data-abc="true">Blog</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="" data-abc="true">Support</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav> -->
+</header>
